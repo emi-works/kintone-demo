@@ -30,15 +30,6 @@ td.deal-row--due-soon {
   background-color: var(--deal-due-soon-bg) !important;
 }
 
-/* 期限切れの行は左端に赤い線を入れて、色の違いが分かりにくい人にも目立たせる */
-.deal-row--overdue > td:first-child {
-  box-shadow: inset 4px 0 0 var(--deal-overdue-strong);
-}
-
-.deal-row--due-soon > td:first-child {
-  box-shadow: inset 4px 0 0 var(--deal-due-soon-strong);
-}
-
 /* ------------------------------------------------------------
  * 一覧画面：期限セルのバッジ（「3日超過」「あと2日」など）
  * 色だけに頼らず、文字でも状態が分かるようにしています
