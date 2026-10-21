@@ -1,0 +1,176 @@
+/*
+ * 問い合わせ管理アプリ カスタマイズ用 CSS
+ * JS が付ける独自クラス（iq- で始まる）だけを使い、kintone 標準のクラス名には依存しません。
+ */
+
+:root {
+  --iq-red: #c62828;
+  --iq-red-bg: #fdecea;
+  --iq-amber: #b26a00;
+  --iq-amber-bg: #fff8e1;
+  --iq-blue: #2a7fb8;
+  --iq-blue-bg: #e8f1fb;
+  --iq-gray: #6b7378;
+  --iq-gray-bg: #eef0f1;
+}
+
+/* ------------------------------------------------------------
+ * 一覧：期限の色分け
+ * ------------------------------------------------------------ */
+.iq-row--overdue > td {
+  background-color: var(--iq-red-bg) !important;
+}
+
+.iq-row--due-soon > td {
+  background-color: var(--iq-amber-bg) !important;
+}
+
+.iq-badge {
+  display: block;
+  width: fit-content;
+  margin-top: 2px;
+  padding: 1px 8px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1.6;
+}
+
+.iq-badge--overdue {
+  background: var(--iq-red);
+}
+
+.iq-badge--due-soon {
+  background: var(--iq-amber);
+}
+
+/* ------------------------------------------------------------
+ * 一覧：対応状況・優先度のラベル
+ * ------------------------------------------------------------ */
+.iq-pill {
+  display: inline-block !important;
+  padding: 1px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1.7;
+}
+
+/* 行が色付きでも埋もれないよう、白地＋枠線にする */
+.iq-status--open {
+  border: 1px solid var(--iq-red);
+  background: #fff;
+  color: var(--iq-red);
+}
+
+.iq-status--working {
+  border: 1px solid var(--iq-blue);
+  background: #fff;
+  color: var(--iq-blue);
+}
+
+.iq-status--done {
+  border: 1px solid var(--iq-gray);
+  background: #fff;
+  color: var(--iq-gray);
+}
+
+.iq-priority--high {
+  background: var(--iq-red);
+  color: #fff;
+}
+
+/* ------------------------------------------------------------
+ * 一覧：件数のサマリー
+ * ------------------------------------------------------------ */
+.iq-summary {
+  display: inline-flex;
+  gap: 10px;
+  margin: 4px 0 4px 12px;
+  vertical-align: middle;
+}
+
+.iq-summary__item {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 6px 14px;
+  border: 1px solid currentColor;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.iq-summary__label {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.iq-summary__count {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.iq-summary__item--open {
+  color: var(--iq-red);
+  background: var(--iq-red-bg);
+}
+
+.iq-summary__item--overdue {
+  color: #fff;
+  background: var(--iq-red);
+  border-color: var(--iq-red);
+}
+
+.iq-summary__item--today {
+  color: var(--iq-blue);
+  background: var(--iq-blue-bg);
+}
+
+/* ------------------------------------------------------------
+ * 詳細：期限の警告と「対応を開始する」ボタン
+ * ------------------------------------------------------------ */
+.iq-detail-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 8px 16px;
+}
+
+.iq-banner {
+  padding: 8px 14px;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.iq-banner--overdue {
+  color: var(--iq-red);
+  background: var(--iq-red-bg);
+}
+
+.iq-banner--due-soon {
+  color: var(--iq-amber);
+  background: var(--iq-amber-bg);
+}
+
+.iq-btn {
+  padding: 8px 18px;
+  border: 1px solid #3498db;
+  border-radius: 4px;
+  background: #3498db;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.iq-btn:hover {
+  background: #2a7fb8;
+}
+
+.iq-btn:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}

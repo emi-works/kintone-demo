@@ -3,3 +3,6 @@
 
 # macOS が自動で作るファイル
 .DS_Store
+
+# clasp のプロジェクト設定（各自の Apps Script プロジェクトID）
+.clasp.json
