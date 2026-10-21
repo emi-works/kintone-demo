@@ -1,0 +1,328 @@
+/*
+ * 見積管理・請求管理 共通 CSS
+ * JS が付ける独自クラス（qi- で始まる）だけを使い、kintone 標準のクラス名には依存しません。
+ */
+
+:root {
+  --qi-primary: #3498db;
+  --qi-primary-dark: #2a7fb8;
+  --qi-text: #333;
+  --qi-muted: #777;
+  --qi-line: #c9ced1;
+  --qi-overdue-bg: #fdecea;
+  --qi-overdue-strong: #c62828;
+}
+
+/* ------------------------------------------------------------
+ * 詳細画面のヘッダー：ボタン・リンク
+ * ------------------------------------------------------------ */
+.qi-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 8px 16px;
+}
+
+.qi-btn {
+  padding: 8px 18px;
+  border: 1px solid var(--qi-line);
+  border-radius: 4px;
+  background: #fff;
+  color: var(--qi-text);
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.qi-btn:hover {
+  background: #f5f7f8;
+}
+
+.qi-btn--primary {
+  border-color: var(--qi-primary);
+  background: var(--qi-primary);
+  color: #fff;
+}
+
+.qi-btn--primary:hover {
+  background: var(--qi-primary-dark);
+}
+
+.qi-btn:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
+.qi-link {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--qi-primary);
+}
+
+.qi-hint {
+  font-size: 13px;
+  color: var(--qi-muted);
+}
+
+/* ------------------------------------------------------------
+ * 請求一覧：支払期限を過ぎた未入金
+ * ------------------------------------------------------------ */
+.qi-row--overdue > td {
+  background-color: var(--qi-overdue-bg) !important;
+}
+
+.qi-badge {
+  display: block;
+  width: fit-content;
+  margin-top: 2px;
+  padding: 1px 8px;
+  border-radius: 10px;
+  background: var(--qi-overdue-strong);
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1.6;
+}
+
+/* ------------------------------------------------------------
+ * 帳票プレビュー（画面に重ねて表示）
+ * ------------------------------------------------------------ */
+#qi-print-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  overflow: auto;
+  padding: 72px 0 40px;
+  background: rgba(40, 44, 48, 0.75);
+}
+
+.qi-print-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* A4 1枚（210mm × 297mm） */
+.qi-sheet {
+  box-sizing: border-box;
+  width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto;
+  padding: 16mm 15mm;
+  background: #fff;
+  color: #222;
+  font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  font-size: 10.5pt;
+  line-height: 1.6;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+.qi-sheet p {
+  margin: 0;
+}
+
+.qi-title {
+  margin: 0 0 6mm;
+  padding-bottom: 2mm;
+  border-bottom: 2px solid #222;
+  font-size: 22pt;
+  font-weight: bold;
+  letter-spacing: 0.5em;
+  text-align: center;
+}
+
+.qi-meta {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: end;
+  gap: 0 4mm;
+  margin: 0 0 6mm;
+}
+
+.qi-meta dt {
+  color: #555;
+}
+
+.qi-meta dd {
+  margin: 0;
+  text-align: right;
+}
+
+.qi-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 8mm;
+  margin-bottom: 8mm;
+}
+
+.qi-to {
+  flex: 1;
+}
+
+.qi-customer {
+  padding-bottom: 1mm;
+  border-bottom: 1px solid #222;
+  font-size: 15pt;
+  font-weight: bold;
+}
+
+.qi-contact {
+  margin-top: 1mm !important;
+}
+
+.qi-subject {
+  margin-top: 4mm !important;
+}
+
+.qi-lead {
+  margin-top: 2mm !important;
+  color: #555;
+}
+
+.qi-total-box {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-top: 4mm;
+  padding: 3mm 4mm;
+  border: 2px solid #222;
+}
+
+.qi-total-label {
+  font-weight: bold;
+}
+
+.qi-total-value {
+  font-size: 16pt;
+  font-weight: bold;
+}
+
+.qi-from {
+  width: 72mm;
+  font-size: 9pt;
+}
+
+.qi-issuer {
+  margin-bottom: 1mm !important;
+  font-size: 12pt;
+  font-weight: bold;
+}
+
+.qi-items,
+.qi-sums {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.qi-items th,
+.qi-items td {
+  padding: 2mm 2.5mm;
+  border: 1px solid #999;
+}
+
+.qi-items th {
+  background: #eef1f3;
+  font-weight: bold;
+  text-align: center;
+}
+
+.qi-name {
+  width: 50%;
+}
+
+.qi-unit {
+  text-align: center;
+}
+
+.qi-num {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.qi-sums {
+  width: 60%;
+  margin: 4mm 0 0 auto;
+}
+
+.qi-sums th,
+.qi-sums td {
+  padding: 1.5mm 2.5mm;
+  border-bottom: 1px solid #ccc;
+}
+
+.qi-sums th {
+  font-weight: normal;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.qi-sums tr:last-child th,
+.qi-sums tr:last-child td {
+  border-top: 2px solid #222;
+  border-bottom: none;
+  font-weight: bold;
+}
+
+.qi-footnote {
+  margin-top: 2mm !important;
+  font-size: 8.5pt;
+  color: #555;
+  text-align: right;
+}
+
+.qi-box {
+  margin-top: 6mm;
+  padding: 3mm 4mm;
+  border: 1px solid #999;
+}
+
+.qi-box-title {
+  margin-bottom: 1mm !important;
+  font-weight: bold;
+}
+
+.qi-small {
+  font-size: 8.5pt;
+  color: #555;
+}
+
+.qi-note {
+  white-space: pre-wrap;
+}
+
+/* ------------------------------------------------------------
+ * 印刷時：帳票だけを出す
+ * ------------------------------------------------------------ */
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media print {
+  body > *:not(#qi-print-overlay) {
+    display: none !important;
+  }
+
+  #qi-print-overlay {
+    position: static;
+    padding: 0;
+    background: none;
+    overflow: visible;
+  }
+
+  .qi-print-toolbar {
+    display: none;
+  }
+
+  .qi-sheet {
+    box-shadow: none;
+    margin: 0;
+  }
+}
