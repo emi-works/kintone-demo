@@ -1,0 +1,142 @@
+/*
+ * 案件・顧客管理アプリ カスタマイズ用 CSS
+ * deal-management.js が付けるクラスの見た目を定義しています。
+ * kintone 標準のクラス名には依存せず、JS で付けた独自クラス（deal- で始まる）だけを使います。
+ */
+
+/* ------------------------------------------------------------
+ * 色の定義（色を変えたいときはここだけ直す）
+ * ------------------------------------------------------------ */
+:root {
+  --deal-overdue-bg: #fdecea;      /* 期限切れ：行の背景 */
+  --deal-overdue-strong: #c62828;  /* 期限切れ：バッジ・文字 */
+  --deal-due-soon-bg: #fff8e1;     /* 期限間近：行の背景 */
+  --deal-due-soon-strong: #b26a00; /* 期限間近：バッジ・文字 */
+  --deal-guide-bg: #e8f1fb;        /* 必須項目の案内 */
+  --deal-guide-border: #3498db;
+}
+
+/* ------------------------------------------------------------
+ * 一覧画面：行の色分け
+ * kintone 側のセル背景より優先させるため !important を付けています
+ * ------------------------------------------------------------ */
+.deal-row--overdue > td,
+td.deal-row--overdue {
+  background-color: var(--deal-overdue-bg) !important;
+}
+
+.deal-row--due-soon > td,
+td.deal-row--due-soon {
+  background-color: var(--deal-due-soon-bg) !important;
+}
+
+/* 期限切れの行は左端に赤い線を入れて、色の違いが分かりにくい人にも目立たせる */
+.deal-row--overdue > td:first-child {
+  box-shadow: inset 4px 0 0 var(--deal-overdue-strong);
+}
+
+.deal-row--due-soon > td:first-child {
+  box-shadow: inset 4px 0 0 var(--deal-due-soon-strong);
+}
+
+/* ------------------------------------------------------------
+ * 一覧画面：期限セルのバッジ（「3日超過」「あと2日」など）
+ * 色だけに頼らず、文字でも状態が分かるようにしています
+ * ------------------------------------------------------------ */
+.deal-badge {
+  display: block;
+  width: fit-content; /* 日付の下に、文字の幅だけで表示する */
+  margin-top: 2px;
+  padding: 1px 8px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1.6;
+  color: #fff;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.deal-badge--overdue {
+  background-color: var(--deal-overdue-strong);
+}
+
+.deal-badge--due-soon {
+  background-color: var(--deal-due-soon-strong);
+}
+
+/* ------------------------------------------------------------
+ * 一覧画面：上部の件数サマリー
+ * ------------------------------------------------------------ */
+.deal-summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0 6px 12px;
+  font-size: 14px;
+  color: #333;
+}
+
+.deal-summary__item {
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.deal-summary__item--overdue {
+  background-color: var(--deal-overdue-bg);
+  color: var(--deal-overdue-strong);
+  border: 1px solid var(--deal-overdue-strong);
+}
+
+.deal-summary__item--due-soon {
+  background-color: var(--deal-due-soon-bg);
+  color: var(--deal-due-soon-strong);
+  border: 1px solid var(--deal-due-soon-strong);
+}
+
+/* ------------------------------------------------------------
+ * 入力画面：「このステータスで必須の項目」の案内
+ * ------------------------------------------------------------ */
+.deal-guide {
+  margin: 8px 16px;
+  padding: 8px 12px;
+  border-left: 4px solid var(--deal-guide-border);
+  background-color: var(--deal-guide-bg);
+  font-size: 14px;
+  color: #333;
+}
+
+/* 下にスクロールして案内が見えなくなったら、画面の一番上に固定する（JS が付け外しする） */
+.deal-guide--fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  margin: 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* ------------------------------------------------------------
+ * 詳細画面：期限の警告バナー
+ * ------------------------------------------------------------ */
+.deal-banner {
+  margin: 8px 16px;
+  padding: 10px 14px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.deal-banner--overdue {
+  background-color: var(--deal-overdue-bg);
+  color: var(--deal-overdue-strong);
+  border: 1px solid var(--deal-overdue-strong);
+}
+
+.deal-banner--due-soon {
+  background-color: var(--deal-due-soon-bg);
+  color: var(--deal-due-soon-strong);
+  border: 1px solid var(--deal-due-soon-strong);
+}
